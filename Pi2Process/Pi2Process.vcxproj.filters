@@ -5,6 +5,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
-    <ClCompile Include="ConsoleApplication1.cpp" />
+    <ClCompile Include="Pi2Process.cpp" />
   </ItemGroup>
 </Project>

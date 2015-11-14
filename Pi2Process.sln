@@ -17,6 +17,7 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{243E8ED0-58CF-4322-BB7D-D52E70352608}.Debug|ARM.ActiveCfg = Debug|ARM
 		{243E8ED0-58CF-4322-BB7D-D52E70352608}.Debug|ARM.Build.0 = Debug|ARM
+		{243E8ED0-58CF-4322-BB7D-D52E70352608}.Debug|ARM.Deploy.0 = Debug|ARM
 		{243E8ED0-58CF-4322-BB7D-D52E70352608}.Debug|x64.ActiveCfg = Debug|x64
 		{243E8ED0-58CF-4322-BB7D-D52E70352608}.Debug|x64.Build.0 = Debug|x64
 		{243E8ED0-58CF-4322-BB7D-D52E70352608}.Debug|x86.ActiveCfg = Debug|Win32
