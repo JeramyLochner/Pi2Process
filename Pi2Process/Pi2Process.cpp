@@ -15,6 +15,7 @@
 #include <tchar.h>
 #include <Psapi.h>
 
+
 using namespace std;
 
 #define DIV 1024
@@ -60,6 +61,21 @@ bool cmdOptionExists(char** begin, char** end, const std::string& option) {
 	return std::find(begin, end, option) != end;
 }
 
+void printGeneralInformation() {
+	TCHAR szComputerNameEx[MAX_COMPUTERNAME_LENGTH + 1] = TEXT("<unknown>");
+	DWORD size = sizeof(szComputerNameEx) / sizeof(szComputerNameEx[0]);
+
+	time_t t;
+	struct tm now;
+	t = time(0);
+	localtime_s(&now, &t);
+	
+	GetComputerNameEx((COMPUTER_NAME_FORMAT)0, szComputerNameEx, &size);
+
+	cout << "Computer Name: " << szComputerNameEx << endl;
+	cout << "Time (h:m:s): " << (now.tm_hour) << ':' << (now.tm_min) << ':' << (now.tm_sec) << endl;
+
+}
 /* End of General Functions */
 
 /* Memory Status Functions */
@@ -77,6 +93,8 @@ void checkInput(HANDLE exitEvent) {
 int memoryStatus(int seconds) { // -m Memory monitoring
 	time_t t;
 	struct tm now;
+	t = time(0);
+	localtime_s(&now, &t);
 
 	printMessageLine("Starting to monitor memory consumption!");
 	printMessageLine("Use Ctrl+C to kill pipeline");
@@ -226,8 +244,12 @@ int main(int argc, char * argv[]) {
 		cout << "-u <pid>\t-\tProcess Memory Usage" << endl;
 		cout << "-m <time (s)>\tMonitor memory" << endl;
 		cout << "**********" << endl;
+		return 0;
 	}
-	else if (cmdOptionExists(argv, argv + argc, "-m")) {
+	else {
+		printGeneralInformation();
+	}
+	if (cmdOptionExists(argv, argv + argc, "-m")) {
 		char * seconds = getCmdOption(argv, argv + argc, "-m");
 		return memoryStatus(strtol(seconds, NULL, 0));
 	}
@@ -241,4 +263,5 @@ int main(int argc, char * argv[]) {
 	else {
 		printMessageLine("./MemoryStatus.exe -h for help");
 	}
+	return 0;
 }
